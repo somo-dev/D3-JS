@@ -12,22 +12,19 @@ function App() {
       .selectAll("circle")
       .data(data)
       .join(
-        (enter) =>
-          enter
-            .append("circle")
-            .attr("class", "new")
-            .attr("r", (value) => value)
-            .attr("cx", (value) => value * 3)
-            .attr("cy", (value) => value * 3)
-            .attr("stroke", "red"),
-        (update) =>
-          update
-            .attr("class", "updated")
-            .attr("r", (value) => value)
-            .attr("cx", (value) => value * 3)
-            .attr("cy", (value) => value * 3),
-        (exit) => exit.remove()
-      );
+        "circle"
+        // (update) =>
+        //   update
+        // .attr("class", "updated")
+        // .attr("r", (value) => value)
+        // .attr("cx", (value) => value * 3)
+        // .attr("cy", (value) => value * 3)
+        // (exit) => exit.remove()
+      )
+      .attr("r", (value) => value)
+      .attr("cx", (value) => value * 3)
+      .attr("cy", (value) => value * 3)
+      .attr("stroke", "red");
   }, [data]);
 
   return (
@@ -35,7 +32,7 @@ function App() {
       <svg ref={svgRef}></svg>
       <br />
       <button onClick={() => setData(data.map((d) => d + 5))}>update</button>
-      <button onClick={() => setData(data.filter((d) => d > 35))}>
+      <button onClick={() => setData(data.filter((d) => d < 35))}>
         delete
       </button>
     </>
